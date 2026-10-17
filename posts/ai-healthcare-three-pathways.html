@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 医疗的三种落地姿势，以及各自的生死线 — target.ai</title>
+<meta name="description" content="AI 医疗不是一条赛道，而是三条生意：影像、制药、临床决策。它们的商业模式、付费方和生死线完全不同。">
+<meta property="og:title" content="AI 医疗的三种落地姿势，以及各自的生死线">
+<meta property="og:description" content="AI 医疗不是一条赛道，而是三条生意。">
+<meta property="og:type" content="article">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --faint: #999999;
+    --line: #e6e4de;
+    --green: #0f6e56;
+    --navy: #1a3a5c;
+    --navy-soft: #eef2f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", serif; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 249, 246, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 720px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; text-decoration: none; color: var(--ink); }
+  .logo .ai { color: var(--green); }
+  .back { font-size: 14px; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--ink); }
+
+  article {
+    max-width: 720px; margin: 0 auto; padding: 56px 24px 96px;
+  }
+  .meta-top { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .cat {
+    font-size: 11px; letter-spacing: 1px; color: var(--navy); font-weight: 600;
+    background: var(--navy-soft); border: 1px solid #dde5ec;
+    padding: 2px 9px; border-radius: 4px;
+  }
+  .date { font-size: 13px; color: var(--faint); }
+  h1 {
+    font-size: 30px; line-height: 1.35; font-weight: 700; letter-spacing: -0.4px;
+    margin-bottom: 14px;
+  }
+  .dek { font-size: 17px; color: var(--muted); margin-bottom: 36px; }
+
+  .body { font-size: 16.5px; color: #2a2a2a; }
+  .body p { margin-bottom: 22px; }
+  .body h2 {
+    font-size: 20px; font-weight: 700; margin: 40px 0 16px;
+    padding-left: 12px; border-left: 3px solid var(--green);
+  }
+  .body strong { font-weight: 600; color: var(--ink); }
+  .body blockquote {
+    margin: 24px 0; padding: 16px 20px;
+    background: #eef4f2; border-left: 3px solid var(--green);
+    border-radius: 6px; color: #334;
+    font-size: 16px;
+  }
+  .body em { font-style: normal; color: var(--muted); }
+
+  .end { text-align: center; margin: 48px 0 8px; color: var(--faint); }
+  .end .dot { letter-spacing: 6px; }
+
+  footer {
+    max-width: 720px; margin: 0 auto; padding: 0 24px 60px;
+    border-top: 1px solid var(--line);
+  }
+  .foot-inner {
+    padding-top: 20px; display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: space-between; color: var(--faint); font-size: 12.5px;
+  }
+  .foot-inner a { color: var(--muted); text-decoration: none; }
+  .foot-inner a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="../index.html">target<span class="ai">.ai</span></a>
+    <a class="back" href="../index.html">← 返回首页</a>
+  </div>
+</nav>
+
+<article>
+  <div class="meta-top">
+    <span class="cat">RESEARCH</span>
+    <span class="date">target.ai · 2026-10-17</span>
+  </div>
+  <h1 class="serif">AI 医疗的三种落地姿势，以及各自的生死线</h1>
+  <p class="dek">AI 医疗不是一条赛道，而是三条生意。它们的商业模式、付费方和生死线，完全不同。</p>
+
+  <div class="body">
+
+    <p>「AI 医疗」这四个字，几乎成了一个筐，什么都能往里装。读片的、开药的、筛患者的、做分子设计的，全都叫 AI 医疗。</p>
+
+    <p>但如果你真的坐下来看一家家公司的生意，会发现它们根本不是同一种东西。不同的技术形态，对应的是不同的付费方、不同的监管路径、不同的成败关键。把它们混在一起谈，是看这个赛道最大的误区。</p>
+
+    <p>我习惯把 AI 医疗拆成三种落地姿势来看。它们各自回答了「钱从哪来、谁说了算、靠什么活下来」三个完全不同的答案。</p>
+
+    <h2>第一种：影像 AI——需求最确定，商业化最难</h2>
+
+    <p>这是 AI 医疗最「成熟」、也最拥挤的一类。让算法读 CT、读眼底、读病理切片，替代医生一部分重复的阅片劳动。</p>
+
+    <p>它的优势在于：<strong>需求是真实且确定的</strong>。医生不够用、阅片耗时、基层漏诊率高，这些痛点几十年没变过。技术上，影像 AI 也最容易拿到循证数据和注册证，是三类里落地最早的。</p>
+
+    <p>但它有一个绕不过去的死结：<strong>付费方是缺失的</strong>。</p>
+
+    <p>谁该为「机器读片」买单？医院不愿意——它习惯了医生「顺带」读完；医生不愿意——因为不增加他们的收入，反而可能被质疑；患者更不愿意——他们为「医生」付费，不为「软件」付费。于是很多影像 AI 公司在拿证之后，反而陷入了「有产品、没收入」的尴尬。</p>
+
+    <blockquote>需求确定，不等于有人买单。影像 AI 的生死线，是能不能找到那个愿意持续付费的人。</blockquote>
+
+    <h2>第二种：AI 制药——天花板最高，验证最难</h2>
+
+    <p>用 AI 做靶点发现、分子设计、候选化合物筛选。这是三类里想象空间最大的一种，因为它直接嵌进了创新药「十亿美金、十年周期」的价值链条里。</p>
+
+    <p>逻辑很诱人：如果 AI 能把临床前周期缩短几年、把成功率提高几个点，那它就是整个制药工业的杠杆。</p>
+
+    <p>但问题是：<strong>验证周期太长了，长到看不清是不是真的有用</strong>。一个分子从 AI 算出来，到真正被临床数据证明，要走过漫长的临床阶段。这期间，你很难分清「AI 到底贡献了多少」。很多公司讲的 AI 故事，最后都变成了「卖服务给药企」的辛苦活——离那个改变行业的愿景，越来越远。</p>
+
+    <p>AI 制药的生死线，不在算法多漂亮，而在<strong>能不能拿出一个真正跑到临床、被数据验证的分子</strong>。拿不出来，故事永远是故事。</p>
+
+    <h2>第三种：临床决策——信任最难建立</h2>
+
+    <p>夹在两者之间的，是 AI 辅助临床决策：帮医生做诊断建议、治疗方案推荐、风险预警。</p>
+
+    <p>这类产品的技术门槛未必最高，但<strong>监管和信任的门槛是三者里最高的</strong>。因为它的输出直接关系到医疗决策，出错的责任谁也担不起。监管批准慢，医生使用谨慎，患者天然怀疑「机器凭什么给我看病」。</p>
+
+    <p>这也意味着，临床决策类的公司，比的往往不是谁的算法更聪明，而是<strong>谁更早建立起了「可信」的标签</strong>——被权威医院采用、被指南引用、在真实场景里跑了足够久。</p>
+
+    <p>这条路最慢，但一旦跑通，壁垒也最深。因为信任的积累，是最难被复制的。</p>
+
+    <h2>三种姿势，三种判断</h2>
+
+    <p>把这三条线放在一起，判断框架其实很清晰：</p>
+
+    <p>看影像 AI，问的是<strong>「谁买单」</strong>——商业化的死结解没解开；看 AI 制药，问的是<strong>「有没有真分子」</strong>——临床验证走没走到；看临床决策，问的是<strong>「被谁信任」</strong>——可信的标签立没立起来。</p>
+
+    <p>很多人谈 AI 医疗，先问「技术强不强」。但技术只是入场券。真正的分水岭，永远在商业、在数据、在信任这些「慢变量」上。</p>
+
+    <h2>结语</h2>
+
+    <p>AI 医疗最有意思的地方在于，它不是一个「赢家通吃」的赛道——三条线各有各的活法，也各有各的死法。</p>
+
+    <p>所以下次再有人跟你聊「一个 AI 医疗的项目」，先别急着问它多智能，先问一句：<strong>它是哪种姿势，它的生死线在哪。</strong>答案可能比技术本身重要得多。</p>
+
+    <div class="end">
+      <span class="dot">· · ·</span>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 target.ai</span>
+    <span>个人观点 · 不构成投资建议</span>
+  </div>
+</footer>
+
+</body>
+</html>
