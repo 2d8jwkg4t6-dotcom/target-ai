@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一次「定性全对、定量全保守」的复盘 — target.ai</title>
+<meta name="description" content="当判断方向正确、出手却保守时，问题出在哪一环：把对「判断」的谨慎，错误地平移到了对「模型参数」的谨慎上。">
+<meta property="og:title" content="一次「定性全对、定量全保守」的复盘">
+<meta property="og:description" content="当判断方向正确、出手却保守时，问题出在哪一环。">
+<meta property="og:type" content="article">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --ink: #1a1a1a;
+    --muted: #666666;
+    --faint: #999999;
+    --line: #e6e4de;
+    --green: #0f6e56;
+    --navy: #1a3a5c;
+    --navy-soft: #eef2f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", serif; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(250, 249, 246, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 720px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; text-decoration: none; color: var(--ink); }
+  .logo .ai { color: var(--green); }
+  .back { font-size: 14px; color: var(--muted); text-decoration: none; }
+  .back:hover { color: var(--ink); }
+
+  article {
+    max-width: 720px; margin: 0 auto; padding: 56px 24px 96px;
+  }
+  .meta-top { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .cat {
+    font-size: 11px; letter-spacing: 1px; color: var(--navy); font-weight: 600;
+    background: var(--navy-soft); border: 1px solid #dde5ec;
+    padding: 2px 9px; border-radius: 4px;
+  }
+  .date { font-size: 13px; color: var(--faint); }
+  h1 {
+    font-size: 30px; line-height: 1.35; font-weight: 700; letter-spacing: -0.4px;
+    margin-bottom: 14px;
+  }
+  .dek { font-size: 17px; color: var(--muted); margin-bottom: 36px; }
+
+  .body { font-size: 16.5px; color: #2a2a2a; }
+  .body p { margin-bottom: 22px; }
+  .body h2 {
+    font-size: 20px; font-weight: 700; margin: 40px 0 16px;
+    padding-left: 12px; border-left: 3px solid var(--green);
+  }
+  .body strong { font-weight: 600; color: var(--ink); }
+  .body blockquote {
+    margin: 24px 0; padding: 16px 20px;
+    background: #eef4f2; border-left: 3px solid var(--green);
+    border-radius: 6px; color: #334;
+    font-size: 16px;
+  }
+  .body em { font-style: normal; color: var(--muted); }
+
+  .end { text-align: center; margin: 48px 0 8px; color: var(--faint); }
+  .end .dot { letter-spacing: 6px; }
+
+  footer {
+    max-width: 720px; margin: 0 auto; padding: 0 24px 60px;
+    border-top: 1px solid var(--line);
+  }
+  .foot-inner {
+    padding-top: 20px; display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: space-between; color: var(--faint); font-size: 12.5px;
+  }
+  .foot-inner a { color: var(--muted); text-decoration: none; }
+  .foot-inner a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="../index.html">target<span class="ai">.ai</span></a>
+    <a class="back" href="../index.html">← 返回首页</a>
+  </div>
+</nav>
+
+<article>
+  <div class="meta-top">
+    <span class="cat">REFLECTION</span>
+    <span class="date">2026-10-17</span>
+  </div>
+  <h1 class="serif">一次「定性全对、定量全保守」的复盘</h1>
+  <p class="dek">当判断方向正确、出手却保守时，问题出在哪一环。</p>
+
+  <div class="body">
+
+    <p>有些错误是「看错了」，有些错误是「做对了判断，却在执行时打了折扣」。后者更隐蔽，也更值得复盘。</p>
+
+    <p>我想讲一次这样的经历——为了脱敏，我不说具体是哪家公司、哪笔交易，只说那个让我反复回想的决策结构。</p>
+
+    <h2>定性：全对</h2>
+
+    <p>那是一个我当时判断非常清晰的案子。</p>
+
+    <p>赛道对：一个需求刚性、且正在发生结构性变化的细分方向。公司对：团队优秀，产品力在同赛道里明显领先。时点对：估值还没有被市场充分认识，正处于一个不算贵的窗口。</p>
+
+    <p>我现在回头看，这三个「对」都是真的。后来的发展证明，方向、公司、时机，没有一样判断错。</p>
+
+    <h2>定量：全保守</h2>
+
+    <p>但出手的时候，我在模型里填了一串保守的假设。</p>
+
+    <p>成长率，取了比行业平均更低的数；利润率，假设它爬得比预期慢；估值，坚持在一个「安全边际」之下才肯下单。每一个参数单独看，都有理由——谨慎，是对钱负责。</p>
+
+    <p>但把这些保守的假设叠在一起，得出了一个结论：这家公司「还没有便宜到让我舒服」。于是我选择少投，甚至一度想等一个更低的点。</p>
+
+    <p>后来的事，你们都猜得到：公司跑出了远超我假设的成长，估值一路走高，那个「更低的点」再也没有出现过。</p>
+
+    <blockquote>定性判断全对，但定量的保守，让我把一个好判断，执行成了一个平庸的结果。</blockquote>
+
+    <h2>问题出在哪一环</h2>
+
+    <p>复盘的时候，我花了很久才承认一件事：问题不在于「保守」，而在于我把「保守」用错了地方。</p>
+
+    <p>保守本身没错。错的是，我把对「判断」的谨慎，错误地平移到了对「模型参数」的谨慎上。</p>
+
+    <p>判断层面应该谨慎——赛道对不对、团队行不行、商业模式成不成立，这些要反复质疑。但当定性已经想得很清楚、置信度已经很高的时候，定量层面再叠加一层层保守，就不是谨慎了，而是另一种形式的怯懦。</p>
+
+    <p>我混淆了两个概念：一是「这件事我不确定」，二是「我不愿意承担不确定性」。前者值得用保守去对冲，后者只会让人在关键时刻缩手。</p>
+
+    <h2>教训</h2>
+
+    <p>这次复盘给我留下的教训，是一句话：</p>
+
+    <blockquote>定性对了，定量保守就不再是安全边际，而是机会成本。</blockquote>
+
+    <p>安全边际的意义，是在「判断可能错」的时候保护你。但如果判断的确定性已经足够高，过度的保守并不会让你更安全，只会让你在正确的事情上，投入不足。</p>
+
+    <p>真正难的，不是「敢不敢下注」，而是「在什么情况下，该下多重的手」。这需要把「谨慎」和「怯懦」分开，也需要诚实地面对自己：我究竟是算清了风险，还是仅仅在害怕。</p>
+
+    <div class="end">
+      <span class="dot">· · ·</span>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <div class="foot-inner">
+    <span>© 2026 target.ai</span>
+    <span>个人观点 · 不构成投资建议</span>
+  </div>
+</footer>
+
+</body>
+</html>
