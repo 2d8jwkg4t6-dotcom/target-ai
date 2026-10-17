@@ -304,22 +304,59 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
 <script>
-  document.getElementById('subForm').addEventListener('submit', function (e) {
+  var IS_PROD = window.location.hostname === 'target-ai.app.workbuddy.host';
+  var PROD_URL = 'https://target-ai.app.workbuddy.host/';
+
+  var cloud = null;
+  if (IS_PROD) {
+    try {
+      cloud = WorkBuddyCloud.createWorkBuddyCloud({
+        endpoint: 'https://target-ai.app.workbuddy.host',
+        oauthRelayBaseUrl: 'https://www.workbuddy.cn/v2/as/genie-baas/oauth',
+        publishableKey: 'wbpk_JsDVNVpgXRvQwGOw5CW5v7_D5H3x92jfuG599Nt8Lg6OnUyEP7zJnv3',
+      });
+    } catch (err) {
+      cloud = null;
+    }
+  }
+
+  document.getElementById('subForm').addEventListener('submit', async function (e) {
     e.preventDefault();
     var input = document.getElementById('subEmail');
     var email = input.value.trim();
     var msg = document.getElementById('subMsg');
+    var btn = this.querySelector('button');
     if (!email) { msg.textContent = '请输入邮箱地址。'; return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = '邮箱格式不正确，请检查。'; return; }
+
+    if (!IS_PROD) {
+      msg.innerHTML = '本站为镜像，订阅请前往 <a href="' + PROD_URL + '" style="color:#9fd6c4;text-decoration:underline">target-ai.app.workbuddy.host</a>';
+      return;
+    }
+    if (!cloud) { msg.textContent = '订阅服务暂不可用，请稍后再试。'; return; }
+
+    btn.disabled = true;
+    btn.textContent = '提交中…';
     try {
-      var key = 'targetai_subscribers';
-      var list = JSON.parse(localStorage.getItem(key) || '[]');
-      if (list.indexOf(email) === -1) list.push(email);
-      localStorage.setItem(key, JSON.stringify(list));
-    } catch (err) { /* 本地存储不可用时静默降级为仅提示 */ }
-    input.value = '';
-    msg.textContent = '订阅成功，感谢关注。';
+      var res = await cloud.database.from('subscriptions').insert({ email: email });
+      if (res && res.error) {
+        if (res.error.code === '23505') {
+          msg.textContent = '这个邮箱已经订阅过了，感谢关注。';
+        } else {
+          msg.textContent = '订阅失败，请稍后再试。';
+        }
+      } else {
+        input.value = '';
+        msg.textContent = '订阅成功，感谢关注。';
+      }
+    } catch (err) {
+      msg.textContent = '订阅失败，请稍后再试。';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '订阅';
+    }
   });
 </script>
 
